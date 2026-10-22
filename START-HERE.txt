@@ -1,0 +1,45 @@
+NEXUS COMMERCE CLOUD — DESIGN 01 UPGRADE
+========================================
+
+This package is the upgraded project source based on Design 01 from your supplied UI reference:
+Electric Cyber-Pop + Obsidian Glass, with two shopping modes:
+  • FLASH — groceries / daily essentials intended for quick-commerce stock
+  • MEGA MALL — electronics, fashion, home and other warehouse items
+
+The storefront is React + TypeScript and loads CSS in an intentional order so Design 01 is the final theme. The backend is a Spring Boot modular-monolith MVP backed by PostgreSQL and Flyway.
+
+BEFORE STARTING
+---------------
+1. Extract this ZIP to a new folder. Do not extract over the older project folder.
+2. Stop any old Spring Boot process occupying port 8080.
+3. In Eclipse: File > Import > Maven > Existing Maven Projects. Select the extracted folder containing pom.xml.
+4. Open src/main/resources/application.properties. Set DB_URL, DB_USERNAME and DB_PASSWORD to your local PostgreSQL settings. Do not commit passwords.
+5. If continuing with database nexus_commerce_cloud_clean currently at Flyway V6, this package adds V7 and V8. Keep your existing data; do not drop the database or delete Flyway history. Stop and investigate any checksum or schema error.
+6. In Eclipse, right-click the project > Maven > Update Project, then run NexusCommerceCloudApplication.java as Spring Boot App with JDK 25.
+7. Wait for Flyway, JPA and Tomcat to finish startup. Expected API port: 8080.
+8. Double-click START-FRONTEND.cmd in this project root. First run requires internet to download npm dependencies.
+9. Open http://localhost:5173/ and keep both backend/frontend processes running.
+
+QUICK CHECKS
+------------
+http://localhost:8080/actuator/health
+http://localhost:8080/api/v1/products?size=20
+http://localhost:8080/api/v1/stores
+
+LOCAL DEMO USERS
+----------------
+Open docs/LOCAL_DEMO_ACCOUNTS.md. These seeded accounts are for local development only.
+
+FEATURE WORKFLOWS
+-----------------
+• Design 01 storefront, search/category filters, Flash and Mega Mall lanes
+• Local cart + wishlist, product details, secure-login flow, checkout
+• Product admin with image URL or local image upload
+• Inventory, order records, simulated payment success/failure, COD
+• Optional Razorpay test-mode integration, disabled by default
+• Delivery partner verification/assignment/status, opt-in browser GPS and customer tracking panel
+• Feedback/support records and in-app toast alerts
+
+IMPORTANT LIMITS
+----------------
+This is a local development MVP, not a production launch package. Payment simulation does not move money. Razorpay code is optional and must be configured and tested with provider TEST credentials before any live use. GPS is browser foreground tracking while the page is active; it is not guaranteed background mobile tracking. Product files are stored locally. Kafka, Redis, OpenSearch, PostGIS, object storage/CDN, Keycloak, native rider apps, route ETA, independently deployed microservices and production observability are architecture targets unless separately implemented/deployed. Replace demo credentials/JWT secret and complete security, payment, deployment, load and integration testing before public exposure.

@@ -1,0 +1,17 @@
+target/
+.classpath
+.project
+.settings/
+*.log
+.env
+
+# Frontend build output
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+.DS_Store
+
+# Locally uploaded product media (store images in object storage for production)
+/uploads/
+*.log
